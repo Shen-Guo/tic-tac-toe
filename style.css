@@ -12,6 +12,9 @@ header{
     border:2px solid black;
    
 } */
+.hide{
+    display: none;
+}
 .container{
     display: flex;
     justify-content: space-between;
@@ -89,12 +92,12 @@ footer{
     
 }
 .blue-bear{
-    background: url('/home/amy/sei/tic-tac-tow/icons8-plush-40.png') no-repeat;
+    background: url('icons8-plush-40.png') no-repeat;
     background-position: center;
 
 }
 .pink-bear{
-    background: url('/home/amy/sei/tic-tac-tow/icons8-plush-48.png') no-repeat;
+    background: url('icons8-plush-48.png') no-repeat;
     background-position: center;
 }
 .display-result{
@@ -109,10 +112,17 @@ span.player1-score {
 span.player2-score {
     margin-left: 20px;
 }
-.reset-btn{
+.reset-btn,.start-btn{
     font-size: 20px;
     border-radius: 5px;
 }
 label,span{
     font-size: 20px;
+}
+
+input{
+    border: none;
+    font-size: 20px;
+    background-color: blanchedalmond;
+    width: 80px;
 }

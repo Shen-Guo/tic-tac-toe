@@ -1,7 +1,8 @@
 
 
 var elements=document.querySelectorAll('.element');
-var resetBtn=document.querySelector('.reset-btn')
+var startBtn=document.querySelector('.start-btn');
+var resetBtn=document.querySelector('.reset-btn');
 var winningCombinations=[[1,2,3],[4,5,6],[7,8,9],[1,5,9],[3,5,7],[1,4,7],[2,5,8],[3,6,9]];
 var winningMatch=[];
 var isPlayer1=true;//pink-bear
@@ -9,6 +10,18 @@ var player1Score=0;
 var player2Score=0;
 var winner;
 var isWinning=false;
+
+var player1Name=document.querySelector('.player1-name');
+var player2Name=document.querySelector('.player2-name');
+
+var newGame=function(){
+    elements.forEach(function(element){
+        element.classList.remove('hide');
+        element.classList.add('animated','bounceIn');
+    
+    })
+
+}
 
 var resetGame=function(){
     elements.forEach(function(element){
@@ -21,13 +34,14 @@ var resetGame=function(){
         winner=null;
         document.querySelector('.display-result').textContent='';
         winningMatch=[];
+        player1Name.value='';
+        player2Name.value='';
     })
     
 }
-// var newGame=function(){
-
-// }
-
+var changePlayerName=function(){
+   
+}
 
 
 var handleClk=function(event){
@@ -95,8 +109,8 @@ var checkForWinner=function(){
     
     var pinkBearIds=getIdsByClassName('.pink-bear');
     var blueBearIds=getIdsByClassName('.blue-bear')
-    check(pinkBearIds,1);
-    check(blueBearIds,2);
+    check(pinkBearIds,player1Name.value);
+    check(blueBearIds,player2Name.value);
 
     
     // for (var i=0;i<winningCombinations.length;i++){
@@ -137,12 +151,12 @@ var highlightWiningDiv=function(match){
 }
 
 var showWinner=function(name){
-    console.log('the winner is player'+name);
-    document.querySelector('.display-result').textContent='the winner is player'+name;
-    if(name===1){
+    console.log('The winner is player '+name);
+    document.querySelector('.display-result').textContent='The winner is player '+name;
+    if(name===player1Name.value){
         player1Score++;
         document.querySelector('.player1-score').textContent=player1Score;
-    }else if(name===2){
+    }else if(name===player2Name.value){
         player2Score++;
         document.querySelector('.player2-score').textContent=player2Score;
 
@@ -160,4 +174,5 @@ var getHighestScore=function(score1,score2){
 elements.forEach(function(element){
     element.addEventListener('click',handleClk)
 })
+startBtn.addEventListener('click',newGame);
 resetBtn.addEventListener('click',resetGame);
