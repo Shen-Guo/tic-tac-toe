@@ -3,16 +3,19 @@
 var elements=document.querySelectorAll('.element');
 var startBtn=document.querySelector('.start-btn');
 var resetBtn=document.querySelector('.reset-btn');
-var winningCombinations=[[1,2,3],[4,5,6],[7,8,9],[1,5,9],[3,5,7],[1,4,7],[2,5,8],[3,6,9]];
+// var winningCombinations=[[1,2,3],[4,5,6],[7,8,9],[1,5,9],[3,5,7],[1,4,7],[2,5,8],[3,6,9]];
+var winningCombinations=[];
 var winningMatch=[];
 var isPlayer1=true;
 var player1Score=0;
 var player2Score=0;
 var winner;
 var isWinning=false;
-
 var player1Name=document.querySelector('.player1-name');
 var player2Name=document.querySelector('.player2-name');
+
+
+
 
 var newGame=function(){
     elements.forEach(function(element){
@@ -39,8 +42,46 @@ var resetGame=function(){
     })
     
 }
-var changePlayerName=function(){
-   
+
+var generateWinningCombinations=function(num){
+    size =num*num;
+    var win=[];
+    // in the same row
+    for (var i=1;i<=size;i++){
+        win.push(i);
+        if(i%num===0){
+            winningCombinations.push(win);
+            win=[];
+        }
+    }
+    //in the same column
+    for (var i=1;i<=num;i++){
+        win=[];
+        for(j=0;j<num;j++)
+        win.push(i+num*j);
+       
+        winningCombinations.push(win);
+    }
+
+    // cross
+    win=[];
+    for (i=0;i<num;i++){
+        win.push(1+(num+1)*i);
+        if(win.length===num){
+            winningCombinations.push(win);
+            win=[];
+        }
+
+    }
+    for (i=0;i<num;i++){
+        win.push(num+(num-1)*i);
+        if(win.length===num){
+            winningCombinations.push(win);
+            win=[];
+        }
+
+    }
+
 }
 
 
@@ -177,6 +218,7 @@ var getHighestScore=function(score1,score2){
     }
 
 }
+generateWinningCombinations(3);
 
 elements.forEach(function(element){
     element.addEventListener('click',handleClk)
