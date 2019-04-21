@@ -10,7 +10,7 @@
 ![Game Screenshot](tic-tac-toe.png)
 
 
-## Play [Click here](https://beginnerdeveloperamy.github.io/tic-tac-toe/)
+## Play [Click here](https://shen-guo.github.io/tic-tac-toe/)
 
 
 ## Project Process
